@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 16px;
+            font-size: 14px;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            border: 16px solid lightgray;
+            border-radius: 8px;
+        }
+        .header img {
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+        }
+        .header span {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .certificate {
+            padding: 16px;
+        }
+        .certificate img {
+            width: 100%;
+        }
+        .details {
+            display: flex;
+            justify-content: space-between;
+            padding: 16px;
+            background-color: #f9f9f9;
+        }
+        .details .detail-box {
+            border: 1px solid lightgray;
+            border-radius: 4px;
+            padding: 8px;
+            width: 48%;
+            background-color: white;
+            font-size: 14px;
+        }
+        .details div p {
+            margin: 8px 0;
+            text-align: left;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid lightgray;
+            margin: 8px 0;
+        }
+        .download-button {
+            background-color: darkred;
+            color: white;
+            padding: 8px;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-block;
+            width: calc(100% - 32px);
+            box-sizing: border-box;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <img id="profile-pic" src="pev/profile-pic.png" alt="Profile Picture">
+            <span>Abdelhamid Ed-Dahbi certificate for Short Specializations</span>
+        </div>
+        <div class="certificate">
+            <img id="certificate-img" src="pev/certificate.png" alt="Certificate">
+        </div>
+        <a href="#" class="download-button" id="download-button">Download certificate</a>
+        <div class="details">
+            <div class="detail-box">
+                <p><strong>Awarded to:</strong> Abdelhamid Ed-Dahbi</p>
+                <hr>
+                <p><strong>Curriculum:</strong> Short Specializations</p>
+            </div>
+            <div class="detail-box">
+                <p><strong>Issued at:</strong> 28th July 2024</p>
+                <hr>
+                <p><strong>Verified at:</strong> <span id="verified-time"></span></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const now = new Date();
+            const formattedDateTime = now.toLocaleString();
+            document.getElementById('verified-time').textContent = formattedDateTime;
+
+            document.getElementById('download-button').addEventListener('click', function(event) {
+                event.preventDefault();
+
+                const img = document.getElementById('certificate-img');
+                const canvas = document.createElement('canvas');
+                const ctx = canvas.getContext('2d');
+
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                const resizedImg = canvas.toDataURL('image/png');
+
+                const link = document.createElement('a');
+                link.href = resizedImg;
+                link.download = 'certificate.png';
+
+                document.body.appendChild(link);
+                link.click();
+
+                document.body.removeChild(link);
+            });
+        });
+    </script>
+</body>
+</html>

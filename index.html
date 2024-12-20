@@ -79,6 +79,58 @@
             cursor: pointer;
             margin-bottom: 16px;
         }
+
+        /* Media query for screens smaller than 768px (tablets and small devices) */
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+            }
+
+            .details {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .details .detail-box {
+                width: 100%;
+                margin-bottom: 16px;
+            }
+
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header img {
+                margin-bottom: 8px;
+            }
+
+            .download-button {
+                width: 100%;
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+
+        /* Media query for screens smaller than 480px (phones in portrait mode) */
+        @media (max-width: 480px) {
+            .header span {
+                font-size: 14px;
+            }
+
+            .certificate img {
+                width: 100%;
+            }
+
+            .download-button {
+                padding: 14px;
+                font-size: 18px;
+            }
+
+            .details .detail-box {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
